@@ -3,7 +3,7 @@ import yelp from "../api/yelp";
 
 export default () => {
   const [results, setResult] = useState({
-    data: null,
+    data: [],
     loading: false,
     error: null,
   });

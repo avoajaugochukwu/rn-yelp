@@ -18,7 +18,7 @@ export default function App() {
         activeCategory={activeCategory}
         setActiveCategory={setActiveCategory}
       />
-      <Restaurants />
+      <Restaurants activeCategory={activeCategory} />
     </View>
   );
 }

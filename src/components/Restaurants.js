@@ -1,13 +1,39 @@
-import { View, Text, StyleSheet } from "react-native";
+import { useEffect } from "react";
+import { View, Text, StyleSheet, ActivityIndicator, FlatList, TouchableOpacity } from "react-native";
 import useRestaurants from "../hooks/useRestaurants";
+import RestaurantItem from "./RestaurantItem";
 
-export default function Restaurants() {
+export default function Restaurants({ activeCategory }) {
+  const [{ data, loading, error }, searchRestaurants] = useRestaurants();
 
-  const [{data, loading, error}, searchRestaurants] = useRestaurants()
+  useEffect(() => {
+    searchRestaurants(activeCategory);
+  }, [activeCategory]);
+
+  if (loading) return <ActivityIndicator size="large" marginVertical={30} />;
+  if (error) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.header}>Something went wrong</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Restaurants</Text>
+
+      <FlatList
+        data={data}
+        keyExtractor={(restaurant) => restaurant.id}
+        renderItem={({ item, index }) => (
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Restaurant", { id: item.id })}
+          >
+            <RestaurantItem restaurant={item} />
+          </TouchableOpacity>
+        )}
+      />
     </View>
   );
 }

@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { FlatList } from "react-native";
+import { FlatList, View } from "react-native";
 import CategoryItem from "./CategoryItem";
 
 const categories = [
@@ -11,10 +10,10 @@ const categories = [
   { name: "Cake", src: require("../assets/images/cake.png") },
 ];
 
-export default function Categories({ activeCategory, setActiveCategory}) {
-  
+export default function Categories({ activeCategory, setActiveCategory }) {
   return (
-    <FlatList
+    <View>
+      <FlatList
         data={categories}
         renderItem={({ item, index }) => {
           return (
@@ -30,5 +29,6 @@ export default function Categories({ activeCategory, setActiveCategory}) {
         showsHorizontalScrollIndicator={false}
         keyExtractor={(category) => category.name}
       />
-  )
+    </View>
+  );
 }
