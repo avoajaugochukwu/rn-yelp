@@ -17,7 +17,6 @@ function RestaurantScreen({ navigation }) {
     searchRestaurant(id);
   }, []);
 
-  console.log(data.length, loading, error)
 
   const dimensions = Dimensions.get("window");
   const imageHeight = Math.round((dimensions.width * 9) / 16);
@@ -39,12 +38,11 @@ function RestaurantScreen({ navigation }) {
 
   return (
     <View>
-      {/* {results.data && (
+      {data && (
         <FlatList
-          data={results.data.photos}
+          data={data.photos}
           keyExtractor={(photo) => photo}
           renderItem={({ item }) => {
-            console.log({ item });
             return (
               <Image
                 style={{ height: imageHeight, width: imageWidth }}
@@ -53,7 +51,7 @@ function RestaurantScreen({ navigation }) {
             );
           }}
         />
-      )} */}
+      )}
     </View>
   );
 }
