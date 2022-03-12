@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import Categories from "../components/Categories";
@@ -5,7 +6,9 @@ import Header from "../components/Header";
 import Restaurants from "../components/Restaurants";
 import SearchBar from "../components/SearchBar";
 
-export default function HomeScreen({ activeCategory, setActiveCategory }) {
+export default function HomeScreen() {
+  const [activeCategory, setActiveCategory] = useState("Burger");
+
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
