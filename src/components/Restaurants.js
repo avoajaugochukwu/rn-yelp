@@ -1,16 +1,10 @@
 import { View, Text, StyleSheet } from "react-native";
-import yelp from "../api/yelp";
+import useRestaurants from "../hooks/useRestaurants";
 
 export default function Restaurants() {
-  const searchRestaurants = async () => {
-    const response = await yelp.get("/search", {
-      params: {
-        limit: 5,
-        term: "Dessert",
-        location: "Toronto",
-      },
-    });
-  };
+
+  const [{data, loading, error}, searchRestaurants] = useRestaurants()
+
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Restaurants</Text>
